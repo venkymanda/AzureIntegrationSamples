@@ -20,8 +20,8 @@ In the world of modern application development and cloud computing, integrations
 
 Azure Functions are a serverless compute service that allow you to run event-driven code without having to manage infrastructure. In this section, you'll find code samples and explanations for using Azure Functions in integration scenarios.
 
-- Sample 1: [Basic HTTP Triggered Azure Function for Isolated Worker Process using Dependency Injection](Azure Functions/IsolatedExample)
-- Sample 2: [Integration with Azure Service Bus](Azure Functions/sample2)
+- Sample 1: [Basic HTTP Triggered Azure Function for Isolated Worker Process using Dependency Injection](Azure%20Functions/IsolatedExample)
+- Sample 2: [Integration with Azure Service Bus](Azure%20Functions/sample2)
 
 ## Durable Functions
 
