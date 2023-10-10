@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "InprocessSample": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7155",
+      "launchBrowser": false
+    }
+  }
+}
