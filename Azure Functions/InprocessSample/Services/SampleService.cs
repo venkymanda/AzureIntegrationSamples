@@ -17,8 +17,8 @@ namespace InprocessSample.Services
 {
     public class SampleService : ISampleService
     {
-        private HttpClient _httpClient;
-        private ILogger<SampleService> _logger;
+        private readonly HttpClient _httpClient;
+        private readonly ILogger<SampleService> _logger;
        
 
         public SampleService(IHttpClientFactory clientfactory,ILogger<SampleService> logger)

@@ -13,7 +13,7 @@ namespace KIKDocumentAPIs.Services
     {
         
         private readonly ILogger<IKIKService> _logger;
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         public  KIKService (ILogger<IKIKService> logger,IHttpClientFactory clientFactory)
         {
