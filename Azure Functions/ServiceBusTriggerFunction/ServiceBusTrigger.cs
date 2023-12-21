@@ -23,7 +23,7 @@ namespace ServiceBusTriggerFunction
         }
 
         [Function(nameof(ServiceBusTrigger))]
-        public async Task<VoidResult> Run([ServiceBusTrigger("kafkacjvn", "kafkacjvn", Connection = "connectionstring")] ServiceBusReceivedMessage message)
+        public async Task<VoidResult> Run([ServiceBusTrigger("kafkacjvn", "CJVNSubs", Connection = "connectionstring", IsBatched = false)] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Message ID: {id}", message.MessageId);
             _logger.LogInformation("Message Body: {body}", message.Body);
@@ -31,7 +31,7 @@ namespace ServiceBusTriggerFunction
             try
             {
                 // Get Bearer token
-                var accessToken = await GetAccessToken();
+                var accessToken = await GetAccessToken(cancellationToken);
 
                 if (accessToken != null)
                 {
@@ -43,18 +43,24 @@ namespace ServiceBusTriggerFunction
                 {
                     salesorder = new
                     {
-                        Data = Encoding.UTF8.GetString(message.Body)
+                        Data = Encoding.UTF8.GetString(message.Body),
+                        Source = message.ApplicationProperties.ContainsKey("Source") ? message.ApplicationProperties["Source"]?.ToString() ?? "" : ""
                     }
                 };
 
                 // Convert the anonymous object to a JSON string
                 string jsonString = JsonConvert.SerializeObject(data);
                 HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content);
+                HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.LogInformation("Message ID: {id} sent to D365 Succesfully", message.MessageId);
+                }
+                else
+                {
+                    _logger.LogInformation("Message ID: {id} Failed with Below error {response}", message.MessageId, await response.Content.ReadAsStringAsync());
+
                 }
 
                 return new VoidResult();
@@ -67,7 +73,7 @@ namespace ServiceBusTriggerFunction
             }
         }
         public struct VoidResult { }
-        public async Task<AuthenticationResult> GetAccessToken()
+        public async Task<AuthenticationResult> GetAccessToken(CancellationToken cancellationToken)
         {
             var clientId = Environment.GetEnvironmentVariable("D365FO.ClientId");
             var clientSecret = Environment.GetEnvironmentVariable("D365FO.ClientSecret");
@@ -83,7 +89,7 @@ namespace ServiceBusTriggerFunction
             var authResult = await app.AcquireTokenForClient(
                                             new[] { $"{resourceUri}/.default" })
 
-                                            .ExecuteAsync()
+                                            .ExecuteAsync(cancellationToken)
                                             .ConfigureAwait(false);
 
             return authResult;
