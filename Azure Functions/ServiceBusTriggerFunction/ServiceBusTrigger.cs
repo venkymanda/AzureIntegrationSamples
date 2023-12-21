@@ -6,6 +6,7 @@ using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
+using Newtonsoft.Json;
 
 namespace ServiceBusTriggerFunction
 {
@@ -37,7 +38,18 @@ namespace ServiceBusTriggerFunction
                     _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.AccessToken);
                 }
                 string apiUrl = Environment.GetEnvironmentVariable("D365URL") ?? "";
-                HttpContent content = new StringContent(Encoding.UTF8.GetString(message.Body), Encoding.UTF8, "application/json");
+                // Create an anonymous object with the desired structure
+                var data = new
+                {
+                    salesorder = new
+                    {
+                        Data = Encoding.UTF8.GetString(message.Body)
+                    }
+                };
+
+                // Convert the anonymous object to a JSON string
+                string jsonString = JsonConvert.SerializeObject(data);
+                HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content);
 
                 if (response.IsSuccessStatusCode)
