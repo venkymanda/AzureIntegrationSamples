@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "KafkaListenerSample": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7165",
+      "launchBrowser": false
+    }
+  }
+}
