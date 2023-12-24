@@ -1,0 +1,12 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "LocalBrokerList": "broker:9092", //Local Cluster running in a Docker container
+    "BrokerList": "<confluent-broker bootstrapurl>",
+    "topic": "kafka-topic-test"
+    //"ConfluentCloudUserName":""
+    //"ConfluentCloudPassword":""
+  }
+}
