@@ -22,6 +22,9 @@ Azure Functions are a serverless compute service that allow you to run event-dri
 
 - Sample 1: [Basic HTTP Triggered Azure Function for Isolated Worker Process using Dependency Injection](Azure%20Functions/IsolatedExample)
 - Sample 2: [Basic HTTP Triggered Azure Function for Inprocess Worker Process using Dependency Injection](Azure%20Functions/InprocessSample)
+- Sample 3: [Azure Function with kafka Trigger to Listen to Kafka Messages](Azure%20Functions/KafkaListenerSample)
+- Sample 4: [Azure Function with Timmer Trigger  to Produce  Kafka Messages every 5 seconds](Azure%20Functions/KafkaProducerSample)
+- Sample 5: [Azure Function with Service Bus Trigger to Consume Messages from Service bus topic](Azure%20Functions/ServiceBusTriggerFunction)
 
 ## Durable Functions
 
