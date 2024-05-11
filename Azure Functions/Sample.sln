@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerContainerFunction", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageQueuetriggerSample", "StorageQueueTriggerSample\StorageQueuetriggerSample.csproj", "{0CAB40A9-DD5C-4C07-9D56-D4EB45676382}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DurableFunctionsIsolated", "DurableFunctionsIsolated\DurableFunctionsIsolated.csproj", "{9C2E18CB-89E0-4943-98CA-EC62942EDEF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{0CAB40A9-DD5C-4C07-9D56-D4EB45676382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CAB40A9-DD5C-4C07-9D56-D4EB45676382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CAB40A9-DD5C-4C07-9D56-D4EB45676382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C2E18CB-89E0-4943-98CA-EC62942EDEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C2E18CB-89E0-4943-98CA-EC62942EDEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C2E18CB-89E0-4943-98CA-EC62942EDEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C2E18CB-89E0-4943-98CA-EC62942EDEF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
